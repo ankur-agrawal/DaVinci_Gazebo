@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="dvrk_psm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="psm" params="prefix parent_link xyz rpy">
+    <!-- fixed joint -->
+    <joint name="${prefix}fixed_joint" type="fixed">
+      <parent link="${parent_link}"/>
+      <child link="${prefix}remote_center_link"/>
+      <origin rpy="${rpy}" xyz="${xyz}"/>
+    </joint>
+
+    <!-- link rc: remote centre link -->
+    <link name="${prefix}remote_center_link" />   
+
+    <!-- fixed joint -->
+    <joint name="${prefix}rc_fixed_joint" type="fixed">
+      <parent link="${prefix}remote_center_link"/>
+      <child link="${prefix}psm_base_link"/>
+      <origin rpy="0 0 0" xyz="0 -0.369 0"/>
+    </joint>
+
+    <!-- link 0: psm base link -->
+    <link name="${prefix}psm_base_link">
+    </link>
+    
+    <!-- link 1: outer_yaw -->
+    <link name="${prefix}outer_yaw_link">
+    </link>
+    
+    <!-- link 2-1: outer_pitch_back -->
+    <link name="${prefix}outer_pitch_back_link"/>
+
+    <link name="${prefix}outer_pitch_bottom_link"/>
+
+    <link name="${prefix}outer_pitch_front_link"/>
+
+    <link name="${prefix}outer_pitch_top_link"/>
+
+    <link name="${prefix}outer_insertion_link"/>
+
+    <link name="${prefix}tool_main_link"/>
+
+    <joint name="${prefix}outer_yaw_joint" type="revolute">
+      <parent link="${prefix}psm_base_link"/>
+      <child link="${prefix}outer_yaw_link"/>
+      <axis xyz="0 0 1"/>
+      <origin rpy="1.5708 -1.5708 0" xyz="0.0 0.0 0.0"/>
+      <limit lower="-1.5707" upper="1.5707" velocity=".4" effort="1000"/>
+    </joint>
+
+
+    <joint name="${prefix}outer_pitch_joint_1" type="revolute">
+      <parent link="${prefix}outer_yaw_link"/>
+      <child link="${prefix}outer_pitch_back_link"/>
+      <axis xyz="0 0 1"/>
+      <origin rpy="-1.5708 -1.5708 0" xyz="0 0.0295 0.1495"/>
+      <limit lower="-1.5708" upper="1.5708" velocity=".4" effort="1000"/>	
+    </joint>
+
+    <joint name="${prefix}outer_pitch_joint_2" type="revolute">
+      <parent link="${prefix}outer_pitch_back_link"/>
+      <child link="${prefix}outer_pitch_bottom_link"/>
+      <limit lower="-1.5708" upper="1.5708" velocity=".4" effort="1000"/>
+    </joint>
+        
+    <joint name="${prefix}outer_pitch_joint_3" type="revolute">
+      <parent link="${prefix}outer_yaw_link"/>
+      <child link="${prefix}outer_pitch_front_link"/>
+      <limit lower="-1.5708" upper="1.5708" velocity=".4" effort="1000"/>
+    </joint>
+
+    <joint name="${prefix}outer_pitch_joint_4" type="revolute">
+      <parent link="${prefix}outer_pitch_front_link"/>
+      <child link="${prefix}outer_pitch_bottom_link"/>
+      <limit lower="-1.5708" upper="1.5708" velocity=".4" effort="1000"/>
+    </joint>
+
+    <joint name="${prefix}outer_pitch_joint_5" type="revolute">
+      <parent link="${prefix}outer_pitch_back_link"/>
+      <child link="${prefix}outer_pitch_top_link"/>
+      <limit lower="-1.5708" upper="1.5708" velocity=".4" effort="1000"/>
+    </joint>
+
+<!--    <joint name="${prefix}outer_pitch_joint_6" type="revolute">
+      <parent link="${prefix}outer_pitch_front_link"/>
+      <child link="${prefix}outer_pitch_top_link"/>
+      <limit lower="-1.5708" upper="1.5708" velocity=".4" effort="1000"/>
+    </joint>-->
+
+    <joint name="${prefix}outer_pitch_joint_7" type="revolute">
+      <parent link="${prefix}outer_pitch_bottom_link"/>
+      <child link="${prefix}outer_insertion_link"/>
+      <limit lower="-1.5708" upper="1.5708" velocity=".4" effort="1000"/>
+    </joint>
+
+    <joint name="${prefix}outer_pitch_joint_8" type="revolute">
+      <parent link="${prefix}outer_pitch_top_link"/>
+      <child link="${prefix}outer_insertion_link"/>
+      <limit lower="-1.5708" upper="1.5708" velocity=".4" effort="1000"/>
+    </joint>
+
+    <joint name="${prefix}outer_insertion_joint" type="prismatic">
+      <parent link="${prefix}outer_insertion_link"/>
+      <child link="${prefix}tool_main_link"/>
+      <limit lower="0" upper="0.240" velocity=".4" effort="1000"/>
+    </joint>
+
+    <transmission name="tran1">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}outer_yaw_joint">
+	<hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor1">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="tran2">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}outer_pitch_joint_1">
+	<hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor2">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="tran3">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}outer_insertion_joint">
+	<hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor3">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+
+<gazebo>
+  <plugin name="${parent_link}_controller" filename="libgazebo_ros_openni_kinect.so">
+    <baseline>0.2</baseline>
+    <alwaysOn>true</alwaysOn>
+    <updateRate>1.0</updateRate>
+    <cameraName>${camera_name}_ir</cameraName>
+    <imageTopicName>/${camera_name}/depth/image_raw</imageTopicName>
+    <cameraInfoTopicName>/${camera_name}/depth/camera_info</cameraInfoTopicName>
+    <depthImageTopicName>/${camera_name}/depth/image_raw</depthImageTopicName>
+    <depthImageInfoTopicName>/${camera_name}/depth/camera_info</depthImageInfoTopicName>
+    <pointCloudTopicName>/${camera_name}/depth/points</pointCloudTopicName>
+    <frameName>${frame_name}</frameName>
+    <pointCloudCutoff>0.5</pointCloudCutoff>
+    <distortionK1>0.00000001</distortionK1>
+    <distortionK2>0.00000001</distortionK2>
+    <distortionK3>0.00000001</distortionK3>
+    <distortionT1>0.00000001</distortionT1>
+    <distortionT2>0.00000001</distortionT2>
+    <CxPrime>0</CxPrime>
+    <Cx>0</Cx>
+    <Cy>0</Cy>
+    <focalLength>0</focalLength>
+    <hackBaseline>0</hackBaseline>
+  </plugin>
+</gazebo>
+
+  </xacro:macro>  
+</robot>

@@ -1,0 +1,1238 @@
+<sdf version='1.4'>
+  <model name='master'>
+    <link name='one_remote_center_link'>
+      <pose>-0.5 0 1 0 -0 3.14159</pose>
+      <inertial>
+        <pose>0.039 -0.40788 -0.07879 0 -0 0</pose>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1</iyy>
+          <iyz>0</iyz>
+          <izz>1</izz>
+        </inertia>
+      </inertial>
+      <collision name='one_remote_center_link_collision_one_psm_base_link'>
+        <pose>0.039 -0.40788 -0.07879 1.5708 -4.23516e-22 -3.14159</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/psm_base.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='one_remote_center_link_visual_one_psm_base_link'>
+        <pose>0.039 -0.40788 -0.07879 1.5708 -4.23516e-22 -3.14159</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/psm_base.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='one_fixed_joint' type='revolute'>
+      <child>one_remote_center_link</child>
+      <parent>world</parent>
+      <axis>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+        </dynamics>
+        <xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+    <link name='one_outer_yaw_link'>
+      <pose>-0.5 0.369 1 -1.57079 -1.57079 -5.35564e-08</pose>
+      <inertial>
+        <pose>0.0125 0 0.1575 -3.14159 -4.23516e-22 1.5708</pose>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1</iyy>
+          <iyz>0</iyz>
+          <izz>1</izz>
+        </inertia>
+      </inertial>
+      <collision name='one_outer_yaw_link_collision'>
+        <pose>0.0125 0 0.1575 -3.14159 -4.23516e-22 1.5708</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/outer_yaw.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='one_outer_yaw_link_visual'>
+        <pose>0.0125 0 0.1575 -3.14159 -4.23516e-22 1.5708</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/outer_yaw.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='one_outer_yaw_joint' type='revolute'>
+      <child>one_outer_yaw_link</child>
+      <parent>one_remote_center_link</parent>
+      <axis>
+        <xyz>-3.61962e-06 1 1.34924e-11</xyz>
+        <limit>
+          <lower>-1.5707</lower>
+          <upper>1.5707</upper>
+          <effort>1000</effort>
+          <velocity>0.4</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='one_outer_pitch_back_link'>
+      <pose>-0.470501 0.5185 1 1.5708 3.67319e-06 1.5708</pose>
+      <inertial>
+        <pose>0 0 0 0 0 -0.27129</pose>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1</iyy>
+          <iyz>0</iyz>
+          <izz>1</izz>
+        </inertia>
+      </inertial>
+      <collision name='one_outer_pitch_back_link_collision'>
+        <pose>0 0 0 0 0 -0.27129</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/outer_pitch_back.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='one_outer_pitch_back_link_visual'>
+        <pose>0 0 0 0 0 -0.27129</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/outer_pitch_back.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='one_outer_pitch_joint_1' type='revolute'>
+      <child>one_outer_pitch_back_link</child>
+      <parent>one_outer_yaw_link</parent>
+      <axis>
+        <xyz>1 3.61963e-06 -2.77556e-17</xyz>
+        <limit>
+          <lower>-1.5708</lower>
+          <upper>1.5708</upper>
+          <effort>1000</effort>
+          <velocity>0.4</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='one_outer_pitch_bottom_link'>
+      <pose>-0.484201 0.560281 1.15007 1.5708 3.67319e-06 1.5708</pose>
+      <inertial>
+        <pose>0.009 0 0 3.14159 -1.57079 3.14159</pose>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1</iyy>
+          <iyz>0</iyz>
+          <izz>1</izz>
+        </inertia>
+      </inertial>
+      <collision name='one_outer_pitch_bottom_link_collision'>
+        <pose>0.009 0 0 3.14159 -1.57079 3.14159</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/outer_pitch_bottom.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='one_outer_pitch_bottom_link_visual'>
+        <pose>0.009 0 0 3.14159 -1.57079 3.14159</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/outer_pitch_bottom.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='one_outer_pitch_joint_5' type='revolute'>
+      <child>one_outer_pitch_bottom_link</child>
+      <parent>one_outer_pitch_front_link</parent>
+      <axis>
+        <xyz>1 3.61963e-06 -2.77556e-17</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='one_outer_insertion_link'>
+      <pose>-0.499699 0.0402806 1.15007 1.5708 3.67319e-06 1.5708</pose>
+      <inertial>
+        <pose>0.02528 0.429 0 3.14159 -1.57079 -1.57079</pose>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1</iyy>
+          <iyz>0</iyz>
+          <izz>1</izz>
+        </inertia>
+      </inertial>
+      <collision name='one_outer_insertion_link_collision'>
+        <pose>0.02528 0.429 0 3.14159 -1.57079 -1.57079</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/outer_insertion.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='one_outer_insertion_link_visual'>
+        <pose>0.02528 0.429 0 3.14159 -1.57079 -1.57079</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/outer_insertion.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='one_outer_pitch_joint_8' type='revolute'>
+      <child>one_outer_insertion_link</child>
+      <parent>one_outer_pitch_top_link</parent>
+      <axis>
+        <xyz>1 3.61963e-06 -2.77556e-17</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='one_tool_main_link'>
+      <pose>-0.499699 -1.858e-05 1.38629 -3.14159 3.67319e-06 1.5708</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 1.5708</pose>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1</iyy>
+          <iyz>0</iyz>
+          <izz>1</izz>
+        </inertia>
+      </inertial>
+      <collision name='one_tool_main_link_collision'>
+        <pose>0 0 0 0 -0 1.5708</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/tool_main.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='one_tool_main_link_visual'>
+        <pose>0 0 0 0 -0 1.5708</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/tool_main.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='one_outer_insertion_joint' type='prismatic'>
+      <child>one_tool_main_link</child>
+      <parent>one_outer_insertion_link</parent>
+      <axis>
+        <xyz>-3.67319e-06 -3.6732e-06 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.24</upper>
+          <effort>1000</effort>
+          <velocity>0.4</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='one_tool_wrist_link'>
+      <pose>-0.4997 -1.99273e-05 1.01949 -3.14159 3.67319e-06 1.5708</pose>
+      <inertial>
+        <pose>0 0.003208 0.00728 0 -0 1.5708</pose>
+        <mass>0.05</mass>
+        <inertia>
+          <ixx>5</ixx>
+          <ixy>4.72524e-13</ixy>
+          <ixz>-2.91928e-07</ixz>
+          <iyy>5</iyy>
+          <iyz>1.07231e-12</iyz>
+          <izz>5</izz>
+        </inertia>
+      </inertial>
+      <collision name='one_tool_wrist_link_collision'>
+        <pose>0 0 0 0 -0 1.5708</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/tool_wrist_link.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name='one_tool_wrist_link_collision_one_tool_wrist_shaft_link'>
+        <pose>0 0.00401 0.0364 1.5708 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/tool_wrist_shaft_link.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='one_tool_wrist_link_visual'>
+        <pose>0 0 0 0 -0 1.5708</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/tool_wrist_link.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='one_tool_wrist_link_visual_one_tool_wrist_shaft_link'>
+        <pose>0 0.00401 0.0364 1.5708 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/tool_wrist_shaft_link.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='one_outer_roll_joint' type='revolute'>
+      <child>one_tool_wrist_link</child>
+      <parent>one_tool_main_link</parent>
+      <axis>
+        <xyz>-3.67319e-06 -3.6732e-06 -1</xyz>
+        <limit>
+          <lower>-2.2689</lower>
+          <upper>2.2689</upper>
+          <effort>1000</effort>
+          <velocity>0.4</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='one_tool_wrist_sca_link'>
+      <pose>-0.4997 -2.0061e-05 0.983092 -2.03445 1.57079 -2.03444</pose>
+      <inertial>
+        <pose>0.0051 0.0032 0 -1.57079 -7.34641e-06 3.14159</pose>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1</iyy>
+          <iyz>0</iyz>
+          <izz>1</izz>
+        </inertia>
+      </inertial>
+      <collision name='one_tool_wrist_sca_link_collision'>
+        <pose>0.0051 0.0032 0 -1.57079 -7.34641e-06 3.14159</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/tool_wrist_sca_link.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='one_tool_wrist_sca_link_visual'>
+        <pose>0.0051 0.0032 0 -1.57079 -7.34641e-06 3.14159</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/tool_wrist_sca_link.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='one_outer_wrist_pitch_joint' type='revolute'>
+      <child>one_tool_wrist_sca_link</child>
+      <parent>one_tool_wrist_link</parent>
+      <axis>
+        <xyz>1 7.29282e-06 -3.67323e-06</xyz>
+        <limit>
+          <lower>-1.5707</lower>
+          <upper>1.5707</upper>
+          <effort>1000</effort>
+          <velocity>0.4</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='one_tool_wrist_sca_shaft_link'>
+      <pose>-0.4997 -2.01264e-05 0.974192 -1.57081 2.69848e-11 7.29285e-06</pose>
+      <inertial>
+        <pose>0 0 -0.0025 0 -0 0</pose>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1</iyy>
+          <iyz>0</iyz>
+          <izz>1</izz>
+        </inertia>
+      </inertial>
+      <collision name='one_tool_wrist_sca_shaft_link_collision'>
+        <pose>0 0 -0.0025 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/tool_wrist_sca_shaft_link.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='one_tool_wrist_sca_shaft_link_visual'>
+        <pose>0 0 -0.0025 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/tool_wrist_sca_shaft_link.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='one_outer_wrist_yaw_joint' type='revolute'>
+      <child>one_tool_wrist_sca_shaft_link</child>
+      <parent>one_tool_wrist_sca_link</parent>
+      <axis>
+        <xyz>-7.29285e-06 1 -1.10196e-05</xyz>
+        <limit>
+          <lower>-1.3963</lower>
+          <upper>1.3963</upper>
+          <effort>1000</effort>
+          <velocity>0.4</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='one_tool_wrist_sca_ee_link_1'>
+      <pose>-0.4997 -2.01264e-05 0.974192 -1.57081 2.69848e-11 7.29285e-06</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1</iyy>
+          <iyz>0</iyz>
+          <izz>1</izz>
+        </inertia>
+      </inertial>
+      <collision name='one_tool_wrist_sca_ee_link_1_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/tool_wrist_sca_link_2.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='one_tool_wrist_sca_ee_link_1_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/tool_wrist_sca_link_2.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='one_outer_wrist_open_angle_joint_1' type='revolute'>
+      <child>one_tool_wrist_sca_ee_link_1</child>
+      <parent>one_tool_wrist_sca_shaft_link</parent>
+      <axis>
+        <xyz>-7.29285e-06 1 -1.10196e-05</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.5707</upper>
+          <effort>1000</effort>
+          <velocity>0.4</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='one_tool_wrist_sca_ee_link_2'>
+      <pose>-0.4997 -2.01264e-05 0.974192 -1.57081 2.69848e-11 7.29285e-06</pose>
+      <inertial>
+        <pose>0 0 0 3.14159 -0.0100073 3.14159</pose>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1</iyy>
+          <iyz>0</iyz>
+          <izz>1</izz>
+        </inertia>
+      </inertial>
+      <collision name='one_tool_wrist_sca_ee_link_2_collision'>
+        <pose>0 0 0 3.14159 -0.0100073 3.14159</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/sphere_50mm.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='one_tool_wrist_sca_ee_link_2_visual'>
+        <pose>0 0 0 3.14159 -0.0100073 3.14159</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/sphere_50mm.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='one_outer_wrist_open_angle_joint_2' type='revolute'>
+      <child>one_tool_wrist_sca_ee_link_2</child>
+      <parent>one_tool_wrist_sca_shaft_link</parent>
+      <axis>
+        <xyz>-7.29285e-06 1 -1.10196e-05</xyz>
+        <limit>
+          <lower>-1.5707</lower>
+          <upper>1.5707</upper>
+          <effort>1000</effort>
+          <velocity>0.4</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='one_outer_pitch_top_link'>
+      <pose>-0.494621 0.560591 1.18695 1.5708 3.67319e-06 1.5708</pose>
+      <inertial>
+        <pose>0.009 0 0 3.14159 -1.57079 3.14159</pose>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1</iyy>
+          <iyz>0</iyz>
+          <izz>1</izz>
+        </inertia>
+      </inertial>
+      <collision name='one_outer_pitch_top_link_collision'>
+        <pose>0.009 0 0 3.14159 -1.57079 3.14159</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/outer_pitch_top.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='one_outer_pitch_top_link_visual'>
+        <pose>0.009 0 0 3.14159 -1.57079 3.14159</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/outer_pitch_top.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='one_outer_pitch_joint_6' type='revolute'>
+      <child>one_outer_pitch_top_link</child>
+      <parent>one_outer_pitch_front_link</parent>
+      <axis>
+        <xyz>1 3.61963e-06 -2.77556e-17</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='one_outer_insertion_link'>
+      <pose>-0.510119 0.0405907 1.18695 1.5708 3.67319e-06 1.5708</pose>
+      <inertial>
+        <pose>0.02528 0.429 0 3.14159 -1.57079 -1.57079</pose>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1</iyy>
+          <iyz>0</iyz>
+          <izz>1</izz>
+        </inertia>
+      </inertial>
+      <collision name='one_outer_insertion_link_collision'>
+        <pose>0.02528 0.429 0 3.14159 -1.57079 -1.57079</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/outer_insertion.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='one_outer_insertion_link_visual'>
+        <pose>0.02528 0.429 0 3.14159 -1.57079 -1.57079</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/outer_insertion.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='one_outer_pitch_joint_8' type='revolute'>
+      <child>one_outer_insertion_link</child>
+      <parent>one_outer_pitch_top_link</parent>
+      <axis>
+        <xyz>1 3.61963e-06 -2.77556e-17</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='one_outer_pitch_front_link'>
+      <pose>-0.4705 0.4285 1 1.5708 3.67319e-06 1.5708</pose>
+      <inertial>
+        <pose>0 0 0 0 0 -0.27129</pose>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1</iyy>
+          <iyz>0</iyz>
+          <izz>1</izz>
+        </inertia>
+      </inertial>
+      <collision name='one_outer_pitch_front_link_collision'>
+        <pose>0 0 0 0 0 -0.27129</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/outer_pitch_front.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='one_outer_pitch_front_link_visual'>
+        <pose>0 0 0 0 0 -0.27129</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/psm/outer_pitch_front.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='one_outer_pitch_joint_2' type='revolute'>
+      <child>one_outer_pitch_front_link</child>
+      <parent>one_outer_yaw_link</parent>
+      <axis>
+        <xyz>1 3.61963e-06 -2.77556e-17</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='platform'>
+      <pose>-0.5 -0.1 0.82949 3.14159 -1.57079 3.14159</pose>
+      <inertial>
+        <pose>0 0 0.89949 3.14159 1.57079 3.14159</pose>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1</iyy>
+          <iyz>0</iyz>
+          <izz>1</izz>
+        </inertia>
+      </inertial>
+      <collision name='platform_collision'>
+        <pose>0 0 0 3.14159 1.57079 3.14159</pose>
+        <geometry>
+          <box>
+            <size>0.2 0.2 0.05</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='platform_visual'>
+        <pose>0 0 0 3.14159 1.57079 3.14159</pose>
+        <geometry>
+          <box>
+            <size>0.2 0.2 0.05</size>
+          </box>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='prismatic_joint' type='prismatic'>
+      <child>platform</child>
+      <parent>world</parent>
+      <axis>
+        <xyz>3.26795e-07 0 1</xyz>
+        <limit>
+          <lower>-0.12</lower>
+          <upper>0.12</upper>
+          <effort>1000</effort>
+          <velocity>50</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='right_top_panel'>
+      <pose>0.5 0 1 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>0.9</mass>
+        <inertia>
+          <ixx>9</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>9</iyy>
+          <iyz>0</iyz>
+          <izz>9</izz>
+        </inertia>
+      </inertial>
+      <collision name='right_top_panel_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/mtm/Top Panel.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='right_top_panel_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/mtm/Top Panel.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='right_fixed_joint' type='revolute'>
+      <child>right_top_panel</child>
+      <parent>world</parent>
+      <axis>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+        </dynamics>
+        <xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+    <link name='right_outer_yaw_link'>
+      <pose>0.5 0 1 0 -0 1.5708</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>10</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>10</iyy>
+          <iyz>0</iyz>
+          <izz>10</izz>
+        </inertia>
+      </inertial>
+      <collision name='right_outer_yaw_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/mtm/OutPitch_Shoulder.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='right_outer_yaw_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/mtm/OutPitch_Shoulder.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='right_outer_yaw_joint' type='revolute'>
+      <child>right_outer_yaw_link</child>
+      <parent>right_top_panel</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1.309</lower>
+          <upper>0.785398</upper>
+          <effort>50</effort>
+          <velocity>2</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='right_back_parallel_link'>
+      <pose>0.5 0 0.80963 1.57079 -1.57079 -1.57079</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>0.9</mass>
+        <inertia>
+          <ixx>9</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>9</iyy>
+          <iyz>0</iyz>
+          <izz>9</izz>
+        </inertia>
+      </inertial>
+      <collision name='right_back_parallel_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/mtm/ArmParallel.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='right_back_parallel_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/mtm/ArmParallel.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='right_shoulder_pitch_joint' type='revolute'>
+      <child>right_back_parallel_link</child>
+      <parent>right_outer_yaw_link</parent>
+      <axis>
+        <xyz>-1 7.85046e-17 2.99695e-24</xyz>
+        <limit>
+          <lower>-0.785398</lower>
+          <upper>0.785398</upper>
+          <effort>100</effort>
+          <velocity>10</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='right_bottom_parallel_link'>
+      <pose>0.5 -1.3681e-12 0.53023 -1.5708 5.55112e-17 1.5708</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>0.8</mass>
+        <inertia>
+          <ixx>0.1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.1</iyy>
+          <iyz>0</iyz>
+          <izz>0.1</izz>
+        </inertia>
+      </inertial>
+      <collision name='right_bottom_parallel_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/mtm/BottomArm.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='right_bottom_parallel_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/mtm/BottomArm.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='right_elbow_pitch_joint' type='revolute'>
+      <child>right_bottom_parallel_link</child>
+      <parent>right_back_parallel_link</parent>
+      <axis>
+        <xyz>-1 1.11022e-16 0</xyz>
+        <limit>
+          <lower>-0.785398</lower>
+          <upper>0.785398</upper>
+          <effort>100</effort>
+          <velocity>10</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='right_wrist_platform_link'>
+      <pose>0.5 -0.3645 0.68623 -4.89665e-12 -0 1.5708</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>0.4</mass>
+        <inertia>
+          <ixx>0.1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.1</iyy>
+          <iyz>0</iyz>
+          <izz>0.1</izz>
+        </inertia>
+      </inertial>
+      <collision name='right_wrist_platform_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/mtm/WristPlatform.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='right_wrist_platform_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/mtm/WristPlatform.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='right_wrist_platform_joint' type='revolute'>
+      <child>right_wrist_platform_link</child>
+      <parent>right_bottom_parallel_link</parent>
+      <axis>
+        <xyz>-4.89665e-12 -2.01948e-28 1</xyz>
+        <limit>
+          <lower>-1.0472</lower>
+          <upper>4.27606</upper>
+          <effort>100</effort>
+          <velocity>10</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='right_wrist_pitch_link'>
+      <pose>0.5 -0.3645 0.68623 -1.5708 5.55112e-17 1.5708</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>0.2</mass>
+        <inertia>
+          <ixx>0.1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.1</iyy>
+          <iyz>0</iyz>
+          <izz>0.1</izz>
+        </inertia>
+      </inertial>
+      <collision name='right_wrist_pitch_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/mtm/WristPitch.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='right_wrist_pitch_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/mtm/WristPitch.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='right_wrist_pitch_joint' type='revolute'>
+      <child>right_wrist_pitch_link</child>
+      <parent>right_wrist_platform_link</parent>
+      <axis>
+        <xyz>-1 0 -1.11022e-16</xyz>
+        <limit>
+          <lower>-1.5708</lower>
+          <upper>3.14159</upper>
+          <effort>100</effort>
+          <velocity>10</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='right_wrist_yaw_link'>
+      <pose>0.5 -0.3645 0.68623 -4.89658e-12 5.55111e-17 3.14159</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>0.2</mass>
+        <inertia>
+          <ixx>0.1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.1</iyy>
+          <iyz>0</iyz>
+          <izz>0.1</izz>
+        </inertia>
+      </inertial>
+      <collision name='right_wrist_yaw_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/mtm/WristYaw.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='right_wrist_yaw_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/mtm/WristYaw.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='right_wrist_yaw_joint' type='revolute'>
+      <child>right_wrist_yaw_link</child>
+      <parent>right_wrist_pitch_link</parent>
+      <axis>
+        <xyz>-5.55112e-17 -4.89658e-12 1</xyz>
+        <limit>
+          <lower>-0.785398</lower>
+          <upper>0.785398</upper>
+          <effort>100</effort>
+          <velocity>10</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='right_wrist_roll_link'>
+      <pose>0.5 -0.3255 0.68623 0.785403 1.57079 -0.785403</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.1</iyy>
+          <iyz>0</iyz>
+          <izz>0.1</izz>
+        </inertia>
+      </inertial>
+      <collision name='right_wrist_roll_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/mtm/WristRoll.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='right_wrist_roll_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/mtm/WristRoll.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='right_wrist_roll_joint' type='revolute'>
+      <child>right_wrist_roll_link</child>
+      <parent>right_wrist_yaw_link</parent>
+      <axis>
+        <xyz>9.79319e-12 1 4.89669e-12</xyz>
+        <limit>
+          <lower>-4.71239</lower>
+          <upper>4.71239</upper>
+          <effort>100</effort>
+          <velocity>10</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='right_top_parallel_link'>
+      <pose>0.435 5.1028e-18 0.80963 1.5708 -9.79333e-12 -1.5708</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>0.5</mass>
+        <inertia>
+          <ixx>5</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>5</iyy>
+          <iyz>0</iyz>
+          <izz>5</izz>
+        </inertia>
+      </inertial>
+      <collision name='right_top_parallel_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/mtm/ArmParallel1.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='right_top_parallel_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://dvrk_model/meshes/mtm/ArmParallel1.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='right_shoulder_pitch_parallel_joint' type='revolute'>
+      <child>right_top_parallel_link</child>
+      <parent>right_back_parallel_link</parent>
+      <axis>
+        <xyz>-1 0 5.55112e-17</xyz>
+        <limit>
+          <lower>-1.5708</lower>
+          <upper>1.5708</upper>
+          <effort>100</effort>
+          <velocity>10</velocity>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <static>0</static>
+    <plugin name='gazebo_ros_control' filename='libgazebo_ros_control.so'>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    </plugin>
+  </model>
+</sdf>

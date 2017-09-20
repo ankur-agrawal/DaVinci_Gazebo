@@ -1,0 +1,53 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/gopeshh/gazebo_plugin_tutorial/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec1139378229/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1139378229.dir/build.make CMakeFiles/cmTryCompileExec1139378229.dir/build
+make[1]: Entering directory `/home/gopeshh/gazebo_plugin_tutorial/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/gopeshh/gazebo_plugin_tutorial/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1139378229.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec1139378229.dir/CheckSymbolExists.c.o   -c /home/gopeshh/gazebo_plugin_tutorial/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTryCompileExec1139378229
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1139378229.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec1139378229.dir/CheckSymbolExists.c.o  -o cmTryCompileExec1139378229 -rdynamic 
+CMakeFiles/cmTryCompileExec1139378229.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x16): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+make[1]: *** [cmTryCompileExec1139378229] Error 1
+make[1]: Leaving directory `/home/gopeshh/gazebo_plugin_tutorial/build/CMakeFiles/CMakeTmp'
+make: *** [cmTryCompileExec1139378229/fast] Error 2
+
+File /home/gopeshh/gazebo_plugin_tutorial/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/gopeshh/gazebo_plugin_tutorial/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec3485280857/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec3485280857.dir/build.make CMakeFiles/cmTryCompileExec3485280857.dir/build
+make[1]: Entering directory `/home/gopeshh/gazebo_plugin_tutorial/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/gopeshh/gazebo_plugin_tutorial/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3485280857.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTryCompileExec3485280857.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-2.8/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec3485280857
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3485280857.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTryCompileExec3485280857.dir/CheckFunctionExists.c.o  -o cmTryCompileExec3485280857 -rdynamic -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+make[1]: *** [cmTryCompileExec3485280857] Error 1
+make[1]: Leaving directory `/home/gopeshh/gazebo_plugin_tutorial/build/CMakeFiles/CMakeTmp'
+make: *** [cmTryCompileExec3485280857/fast] Error 2
+
+
